@@ -1,10 +1,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>ec.mityc</groupId>
+  <groupId>es.mityc</groupId>
   <artifactId>Dependencias</artifactId>
   <version>1.1.7</version>
   <packaging>pom</packaging>
   <modules>
   	<module>MITyCLibAPI</module>
+  	<module>MITyCLibCert</module>
   </modules>
+  <dependencies>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk16</artifactId>
+			<version>1.46</version>
+		</dependency>
+	</dependencies>
 </project>
