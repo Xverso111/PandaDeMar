@@ -12,6 +12,7 @@
 		<module>MITyCLibOCSP</module>
 		<module>MITyCLibCrypt</module>
 		<module>MITyCLibTSA</module>
+		<module>MITyCLibCert</module>
 	</modules>
 	<dependencies>
 		<dependency>
