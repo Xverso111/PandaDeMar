@@ -1,14 +1,19 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>es.mityc</groupId>
-  <artifactId>Dependencias</artifactId>
-  <version>1.1.7</version>
-  <packaging>pom</packaging>
-  <modules>
-  	<module>MITyCLibAPI</module>
-  	<module>MITyCLibCert</module>
-  </modules>
-  <dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>es.mityc</groupId>
+	<artifactId>Dependencias</artifactId>
+	<version>1.1.7</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>MITyCLibAPI</module>
+
+		<module>MITyCLibXADES</module>
+		<module>MITyCLibOCSP</module>
+		<module>MITyCLibCrypt</module>
+		<module>MITyCLibTSA</module>
+	</modules>
+	<dependencies>
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
@@ -17,7 +22,27 @@
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-jdk16</artifactId>
+			<version>1.45</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bctsp-jdk16</artifactId>
+			<version>1.45</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk16</artifactId>
 			<version>1.46</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.0.1</version>
 		</dependency>
 	</dependencies>
 </project>
