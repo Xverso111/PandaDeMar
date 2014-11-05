@@ -21,7 +21,9 @@ public class SignerTimerTaskTest {
 		signerTask.setSourceDir("sourceDirectory");
 		signerTask.setFileBlock(10);
 		signerTask.setTargetDir("signedDirectory");
-		signerTask.setSignature(new Signer());
+		Signer signer = new Signer();
+		signer.inicializar("certificateDir//prueba.p12", "JdsAcR321");
+		signerTask.setSignature(signer);
 		signerTask.run();
 	}
 }
