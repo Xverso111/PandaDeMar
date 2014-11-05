@@ -1,6 +1,12 @@
 package com.pco.converter;
 
 import java.io.IOException;
+import java.nio.file.DirectoryIteratorException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,9 +23,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+
 public class Utils {
 
-	protected static String getKey(String rutaXML) {
+	public String getKey(String rutaXML) {
 		String claveAcceso = "";
 
 		try {
@@ -42,5 +49,20 @@ public class Utils {
 		}
 
 		return claveAcceso;
+	}
+	
+	public Map<String,Path> getXmlFilesOnSourceDirectory(Path sourceDirectory){
+		Map<String,Path> filesOnDirectory= new HashMap<>();
+		try (DirectoryStream<Path> directoryContents = Files.newDirectoryStream(sourceDirectory,"*.{xml,XML}")) {
+			for (Path file: directoryContents) {
+				if(!Files.isDirectory(file)){
+						filesOnDirectory.put(file.getFileName().toString(),file);
+				}
+			}
+		} catch (IOException | DirectoryIteratorException x) {
+			// IOException can never be thrown by the iteration.
+			System.err.println(x);
+		}
+		return filesOnDirectory;
 	}
 }

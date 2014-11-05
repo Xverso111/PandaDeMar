@@ -4,6 +4,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
@@ -22,8 +26,32 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 
 public class XML2PDF {
-	protected static boolean convertXML2PDF(String rutaOrigenXML, String rutaDestinoPDF) {
-		String claveAcceso = Utils.getKey(rutaOrigenXML);
+	public void convertXML2PDF(String sourceDir, String targetDir) {
+
+		Utils utils = new Utils();
+
+		Path sourceDirectoryPath = Paths.get(sourceDir);
+		Map<String, Path> xmlFiles = utils
+				.getXmlFilesOnSourceDirectory(sourceDirectoryPath);
+		for (Entry<String, Path> xmlFile : xmlFiles.entrySet()) {
+			String stringXmlFile = xmlFile.getValue().toString();
+			System.out.println("PDF - SourceDir: " + stringXmlFile);
+			int idxFileSeparator = stringXmlFile.lastIndexOf(System.getProperty("file.separator"));
+			int idxPeriod = stringXmlFile.lastIndexOf(".");
+			String fileName = stringXmlFile.substring(idxFileSeparator+1, idxPeriod);
+			String stringPdfFile = targetDir+System.getProperty("file.separator")+fileName+".pdf";
+			System.out.println("PDF - TargetDir: " + stringPdfFile);
+			
+			transformFile(stringXmlFile, stringPdfFile);
+		}
+
+	}
+
+	private boolean transformFile(String rutaOrigenXML, String rutaDestinoPDF) {
+
+		Utils utils = new Utils();
+
+		String claveAcceso = utils.getKey(rutaOrigenXML);
 
 		TransformerFactory tFactory = TransformerFactory.newInstance();
 
@@ -31,7 +59,7 @@ public class XML2PDF {
 		try {
 			Transformer transformerCabecera = tFactory
 					.newTransformer(new StreamSource(
-							"./src/main/resoruces/facturaCabeceraXSL.xsl"));
+							"../generic-pdf-creator/src/main/resources/facturaCabeceraXSL.xsl"));
 			StringWriter outWriterCabecera = new StringWriter();
 			transformerCabecera.transform(new StreamSource(rutaOrigenXML),
 					new StreamResult(outWriterCabecera));
@@ -40,8 +68,7 @@ public class XML2PDF {
 
 			Document document = new Document(PageSize.A4);
 			PdfWriter pdfWriter = PdfWriter.getInstance(document,
-					new FileOutputStream(
-							rutaDestinoPDF));
+					new FileOutputStream(rutaDestinoPDF));
 			XMLWorkerHelper worker = XMLWorkerHelper.getInstance();
 			document.open();
 			worker.parseXHtml(pdfWriter, document, new StringReader(
@@ -57,10 +84,9 @@ public class XML2PDF {
 			// Detalle
 			Transformer transformerDetalle = tFactory
 					.newTransformer(new StreamSource(
-							"./src/main/resoruces/facturaDetalleXSL.xsl"));
+							"../generic-pdf-creator/src/main/resources/facturaDetalleXSL.xsl"));
 			StringWriter outWriterDetalle = new StringWriter();
-			transformerDetalle.transform(new StreamSource(
-					rutaOrigenXML),
+			transformerDetalle.transform(new StreamSource(rutaOrigenXML),
 					new StreamResult(outWriterDetalle));
 			StringBuffer sbDetalle = outWriterDetalle.getBuffer();
 			String stringDetalle = sbDetalle.toString();
@@ -73,6 +99,5 @@ public class XML2PDF {
 		}
 
 		return true;
-
 	}
 }
