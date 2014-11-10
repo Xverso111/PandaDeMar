@@ -3,6 +3,7 @@ package com.pco.signature.daemon;
 import java.util.Timer;
 
 import com.pco.signature.Signer;
+import com.pco.signature.timer.Constants;
 import com.pco.signature.timer.SignerTimer;
 import com.pco.signature.timer.SignerTimerTask;
 import com.pco.properties.PropertiesUtil;
@@ -23,7 +24,7 @@ public class MainSignerDaemon {
 			PropertiesUtil propertiesReader= PropertiesUtil.getInstance();
 			long time=Long.parseLong(propertiesReader.getProperty("time","600000"));
 			int fileBlock=Integer.parseInt(propertiesReader.getProperty("fileBlock", "10"));
-			String sourceDir=propertiesReader.getProperty("sourceDirectory",NO_DIR);
+			String sourceDir=propertiesReader.getProperty("sourceDirectory",Constants.NO_DIRECTORY);
 			String certDir=propertiesReader.getProperty("certDir",NO_CERT);
 			String password=propertiesReader.getProperty("password","NO_PSWD");
 			String targetDir=propertiesReader.getProperty("targetDirectory","c://temp");
