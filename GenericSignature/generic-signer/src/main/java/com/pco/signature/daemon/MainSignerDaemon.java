@@ -11,7 +11,6 @@ import com.pco.properties.PropertiesUtil;
 public class MainSignerDaemon {
 	//Logger log= Logger.getLogger(MainSignerDaemon.class);
 
-	public static final String NO_DIR="NO_DIR";
 	public static final String NO_CERT="NO_CERT";
 
 
