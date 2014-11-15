@@ -16,7 +16,7 @@ public class ModelToXMLTest {
 		Factura f = new Factura("comprobante", "1.0.0");
 
 		// Info Tributaria
-		f.setInfoTributaria(new InfoTributaria(1, 2, "EDISON SUAREZ", "ESU",
+		f.setInfoTributaria(new InfoTributaria(1, 2, "EDISON SUAREZ SILVA", "ESU",
 				"1718389321", "1234567890", "01", "02", "03", "123", "CARAPUGO"));
 
 		// TotalConImpuestos
