@@ -14,7 +14,7 @@ import org.junit.Test;
 public class ModelToXMLTest {
 
 	@Test
-	public void ModelToXML() {
+	public void ShouldGenerateModelToXML() {
 
 		Factura f = new Factura("comprobante", "1.0.0");
 
@@ -68,8 +68,8 @@ public class ModelToXMLTest {
 		detalles.add(detalle);
 
 		f.setDetalles(detalles);
-		
-		//Retenciones
+
+		// Retenciones
 		Retencion retencion1 = new Retencion(16, 17,
 				BigDecimal.valueOf(282.34), BigDecimal.valueOf(290.35));
 		Retencion retencion2 = new Retencion(460, 470,
@@ -89,8 +89,10 @@ public class ModelToXMLTest {
 		f.setInfoAdicional(infoAdicionalList);
 
 		try {
+			String stringXmlFile = "./xmlDirectory"
+					+ System.getProperty("file.separator") + "factura.xml";
 			File file = new File(
-					"/Users/edisonsuarezsilva/Desktop/testObjectToXML.xml");
+					stringXmlFile);
 			JAXBContext jc = JAXBContext.newInstance(Factura.class);
 			Marshaller m = jc.createMarshaller();
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
