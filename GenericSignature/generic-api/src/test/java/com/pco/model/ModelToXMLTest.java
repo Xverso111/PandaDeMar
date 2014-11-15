@@ -1,20 +1,17 @@
 package com.pco.model;
 
-import java.io.File;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-
 import org.junit.Test;
+
+import com.pco.utils.Util;
 
 public class ModelToXMLTest {
 
 	@Test
-	public void ShouldGenerateModelToXML() {
+	public void ShouldGenerateFactura() {
 
 		Factura f = new Factura("comprobante", "1.0.0");
 
@@ -88,19 +85,8 @@ public class ModelToXMLTest {
 		infoAdicionalList.add(ia2);
 		f.setInfoAdicional(infoAdicionalList);
 
-		try {
-			String stringXmlFile = "./xmlDirectory"
-					+ System.getProperty("file.separator") + "factura.xml";
-			File file = new File(
-					stringXmlFile);
-			JAXBContext jc = JAXBContext.newInstance(Factura.class);
-			Marshaller m = jc.createMarshaller();
-			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			m.marshal(f, file);
-		} catch (JAXBException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		Util util = new Util();
+		util.generateFactura(f);
 
 	}
 
