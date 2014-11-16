@@ -6,8 +6,11 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "infoFactura")
+@XmlType(propOrder = {"guiaRemision",
+		"totalDescuento", "totalConImpuestos", "propina", "importeTotal" })
 public class InfoFactura extends InfoComprobanteBase {
 
 	private String guiaRemision;
@@ -16,7 +19,6 @@ public class InfoFactura extends InfoComprobanteBase {
 	private BigDecimal propina;
 	private BigDecimal importeTotal;
 
-	
 	public InfoFactura() {
 		//
 	}
@@ -64,7 +66,7 @@ public class InfoFactura extends InfoComprobanteBase {
 	}
 
 	@XmlElementWrapper
-	@XmlElement(name="totalImpuesto")
+	@XmlElement(name = "totalImpuesto")
 	public List<Impuesto> getTotalConImpuestos() {
 		return totalConImpuestos;
 	}

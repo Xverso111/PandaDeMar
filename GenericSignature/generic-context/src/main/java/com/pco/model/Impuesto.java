@@ -8,7 +8,7 @@ public class Impuesto {
 	private Integer codigo;
 	private Integer codigoPorcentaje;
 	private BigDecimal descuentoAdicional;
-	private Integer tarifa;
+	private BigDecimal tarifa;
 	private Integer porcentajeRetener;
 	private BigDecimal valorRetenido;
 	private BigDecimal baseImponible;
@@ -16,20 +16,47 @@ public class Impuesto {
 	private String codDocSustento;
 	private String numDocSustento;
 	private String fechaEmisionDocSustento;
+	private String codigoRetecion;
 
 	public Impuesto() {
 		//
 	}
 
-	public Impuesto(Integer codigo, Integer codigoPorcentaje,
-			BigDecimal descuentoAdicional, Integer tarifa,
-			BigDecimal baseImponible, BigDecimal valor) {
+	public Impuesto(Integer codigo, BigDecimal baseImponible) {
 		this.codigo = codigo;
+		this.baseImponible = baseImponible;
+	}
+
+	public Impuesto(Integer codigo, Integer codigoPorcentaje,
+			BigDecimal descuentoAdicional, BigDecimal tarifa,
+			BigDecimal baseImponible, BigDecimal valor) {
+		this(codigo, baseImponible);
 		this.codigoPorcentaje = codigoPorcentaje;
 		this.descuentoAdicional = descuentoAdicional;
 		this.tarifa = tarifa;
-		this.baseImponible = baseImponible;
 		this.valor = valor;
+
+	}
+	
+	public Impuesto(Integer codigo, Integer codigoPorcentaje,
+			BigDecimal baseImponible, BigDecimal valor) {
+		this(codigo, baseImponible);
+		this.codigoPorcentaje = codigoPorcentaje;
+		this.valor = valor;
+
+	}
+
+	public Impuesto(Integer codigo, BigDecimal baseImponible,
+			String codigoRetencion, Integer porcentajeRetener,
+			BigDecimal valorRetenido, String codDocSustento,
+			String numDocSustento, String fechaEmisionDocSustento) {
+		this(codigo, baseImponible);
+		this.codigoRetecion = codigoRetencion;
+		this.porcentajeRetener = porcentajeRetener;
+		this.valorRetenido = valorRetenido;
+		this.codDocSustento = codDocSustento;
+		this.numDocSustento = numDocSustento;
+		this.fechaEmisionDocSustento = fechaEmisionDocSustento;
 	}
 
 	// Getters && Setters
@@ -61,11 +88,11 @@ public class Impuesto {
 	}
 
 	@XmlElement
-	public Integer getTarifa() {
+	public BigDecimal getTarifa() {
 		return tarifa;
 	}
 
-	public void setTarifa(Integer tarifa) {
+	public void setTarifa(BigDecimal tarifa) {
 		this.tarifa = tarifa;
 	}
 
@@ -130,5 +157,13 @@ public class Impuesto {
 
 	public void setFechaEmisionDocSustento(String fechaEmisionDocSustento) {
 		this.fechaEmisionDocSustento = fechaEmisionDocSustento;
+	}
+
+	public String getCodigoRetecion() {
+		return codigoRetecion;
+	}
+
+	public void setCodigoRetecion(String codigoRetecion) {
+		this.codigoRetecion = codigoRetecion;
 	}
 }

@@ -23,19 +23,36 @@ public class Detalle {
 		//
 	}
 
-	public Detalle(String codigoPrincipal, String codigoAuxiliar,
-			String descripcion, BigDecimal cantidad, BigDecimal precioUnitario,
-			BigDecimal descuento, BigDecimal precioTotalSinImpuesto,
-			List<DetalleAdicional> detallesAdicionales, List<Impuesto> impuestos) {
-		this.codigoPrincipal = codigoPrincipal;
-		this.codigoAuxiliar = codigoAuxiliar;
+	public Detalle(String descripcion, BigDecimal cantidad,
+			List<DetalleAdicional> detallesAdicionales) {
 		this.descripcion = descripcion;
 		this.cantidad = cantidad;
+		this.detallesAdicionales = detallesAdicionales;
+	}
+
+	public Detalle(String codigoInterno, String codigoAdicional,
+			String codigoPrincipal, String codigoAuxiliar, String descripcion,
+			BigDecimal cantidad, BigDecimal precioUnitario,
+			BigDecimal descuento, BigDecimal precioTotalSinImpuesto,
+			List<DetalleAdicional> detallesAdicionales, List<Impuesto> impuestos) {
+		this(descripcion, cantidad, detallesAdicionales);
+		this.codigoInterno = codigoInterno;
+		this.codigoAdicional = codigoAdicional;
+		this.codigoPrincipal = codigoPrincipal;
+		this.codigoAuxiliar = codigoAuxiliar;
 		this.precioUnitario = precioUnitario;
 		this.descuento = descuento;
 		this.precioTotalSinImpuesto = precioTotalSinImpuesto;
-		this.detallesAdicionales = detallesAdicionales;
 		this.impuestos = impuestos;
+	}
+
+	public Detalle(String codigoInterno, String codigoAdicional,
+			String descripcion, BigDecimal cantidad,
+			List<DetalleAdicional> detallesAdicionales) {
+		this(descripcion, cantidad, detallesAdicionales);
+		this.codigoInterno = codigoInterno;
+		this.codigoAdicional = codigoAdicional;
+
 	}
 
 	// Getters && Setters

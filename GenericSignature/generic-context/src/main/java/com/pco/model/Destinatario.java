@@ -2,6 +2,13 @@ package com.pco.model;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType(propOrder = { "identificacionDestinatario", "razonSocialDestinatario",
+		"dirDestinatario", "motivoTraslado",
+		"docAduaneroUnico", "codEstabDestino", "ruta",
+		"codDocSustento", "numDocSustento", "numAutDocSustento",
+		"fechaEmisionDocSustento", "detalles" })
 public class Destinatario {
 	private String identificacionDestinatario;
 	private String razonSocialDestinatario;
@@ -16,6 +23,31 @@ public class Destinatario {
 	private String fechaEmisionDocSustento;
 	private List<Detalle> detalles;
 	
+	public Destinatario(){
+		//
+	}
+	
+	public Destinatario(String identificacionDestinatario,
+			String razonSocialDestinatario, String dirDestinatario,
+			String motivoTraslado, String docAduaneroUnico,
+			String codEstabDestino, String ruta, String codDocSustento,
+			String numDocSustento, String numAutDocSustento,
+			String fechaEmisionDocSustento, List<Detalle> detalles) {
+		this.identificacionDestinatario = identificacionDestinatario;
+		this.razonSocialDestinatario = razonSocialDestinatario;
+		this.dirDestinatario = dirDestinatario;
+		this.motivoTraslado = motivoTraslado;
+		this.docAduaneroUnico = docAduaneroUnico;
+		this.codEstabDestino = codEstabDestino;
+		this.ruta = ruta;
+		this.codDocSustento = codDocSustento;
+		this.numDocSustento = numDocSustento;
+		this.numAutDocSustento = numAutDocSustento;
+		this.fechaEmisionDocSustento = fechaEmisionDocSustento;
+		this.detalles = detalles;
+	}
+
+
 	//Getters && Setters
 	public String getIdentificacionDestinatario() {
 		return identificacionDestinatario;
