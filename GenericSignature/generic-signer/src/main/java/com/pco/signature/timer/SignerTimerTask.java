@@ -28,7 +28,7 @@ public class SignerTimerTask extends TimerTask{
 	@Override
 	public void run() {
 		if(isAValidDirectory(sourceDir)){
-			
+
 			Path sourceDirectoryPath= Paths.get(sourceDir);
 			Map<String,Path> xmlFiles=getXmlFilesOnSourceDirectory(sourceDirectoryPath);
 			//consultar si no esta siendo procesado por otro timerTask
@@ -39,11 +39,11 @@ public class SignerTimerTask extends TimerTask{
 					SharedFilesMemory.addFileToProcess(xmlFile.getKey());
 					//termino de firmar y se va de la lista
 					signature.ejecutarFirmaXades(targetDir, xmlFile.getValue().toString(), targetDir+System.getProperty("file.separator")+"Signed-"+xmlFile.getKey());
-//					try {
-//						Files.deleteIfExists(xmlFile.getValue());
-//					} catch (IOException e) {
-//						System.out.println("problemas eliminando el archivo");
-//					}
+					try {
+						Files.deleteIfExists(xmlFile.getValue());
+					} catch (IOException e) {
+						System.out.println("problemas eliminando el archivo");
+					}
 					SharedFilesMemory.removeFile(xmlFile.getKey());
 				}
 			}
